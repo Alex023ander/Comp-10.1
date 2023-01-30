@@ -1,41 +1,52 @@
 # Comp-10.1
 
-public class Executive extends Employee
+public class Hourly extends Employee
 {
-   private double bonus;
-  
+   private int hoursWorked;
 
    //-----------------------------------------------------------------
-   //  Constructor: Sets up this executive with the specified
+   //  Constructor: Sets up this hourly employee using the specified
    //  information.
    //-----------------------------------------------------------------
-   public Executive(String eName, String eAddress, String ePhone,
-                    String socSecNumber, double rate)
+   public Hourly(String eName, String eAddress, String ePhone,
+                 String socSecNumber, double rate)
    {
       super(eName, eAddress, ePhone, socSecNumber, rate);
 
-      bonus = 0;  // bonus has yet to be awarded
+      hoursWorked = 0;
    }
 
    //-----------------------------------------------------------------
-   //  Awards the specified bonus to this executive.
+   //  Adds the specified number of hours to this employee's
+   //  accumulated hours.
    //-----------------------------------------------------------------
-   public void awardBonus(double execBonus)
+   public void addHours(int moreHours)
    {
-      bonus = execBonus;
+      hoursWorked += moreHours;
    }
 
    //-----------------------------------------------------------------
-   //  Computes and returns the pay for an executive, which is the
-   //  regular employee payment plus a one-time bonus.
+   //  Computes and returns the pay for this hourly employee.
    //-----------------------------------------------------------------
    public double pay()
    {
-      double payment = super.pay() + bonus;
+      double payment = payRate * hoursWorked;
 
-      bonus = 0;
+      hoursWorked = 0;
 
       return payment;
+   }
+
+   //-----------------------------------------------------------------
+   //  Returns information about this hourly employee as a string.
+   //-----------------------------------------------------------------
+   public String toString()
+   {
+      String result = super.toString();
+
+      result += "\nCurrent hours: " + hoursWorked;
+
+      return result;
    }
    
 }
