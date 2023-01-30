@@ -1,42 +1,41 @@
 # Comp-10.1
 
-public class Employee extends StaffMember
+public class Executive extends Employee
 {
-   protected String socialSecurityNumber;
-   protected double payRate;
-   
-   
+   private double bonus;
+  
+
    //-----------------------------------------------------------------
-   //  Constructor: Sets up this employee with the specified
+   //  Constructor: Sets up this executive with the specified
    //  information.
    //-----------------------------------------------------------------
-   public Employee(String eName, String eAddress, String ePhone,
-                   String socSecNumber, double rate)
+   public Executive(String eName, String eAddress, String ePhone,
+                    String socSecNumber, double rate)
    {
-      super(eName, eAddress, ePhone);
+      super(eName, eAddress, ePhone, socSecNumber, rate);
 
-      socialSecurityNumber = socSecNumber;
-      payRate = rate;
+      bonus = 0;  // bonus has yet to be awarded
    }
 
    //-----------------------------------------------------------------
-   //  Returns information about an employee as a string.
+   //  Awards the specified bonus to this executive.
    //-----------------------------------------------------------------
-   public String toString()
+   public void awardBonus(double execBonus)
    {
-      String result = super.toString();
-
-      result += "\nSocial Security Number: " + socialSecurityNumber;
-
-      return result;
+      bonus = execBonus;
    }
 
    //-----------------------------------------------------------------
-   //  Returns the pay rate for this employee.
+   //  Computes and returns the pay for an executive, which is the
+   //  regular employee payment plus a one-time bonus.
    //-----------------------------------------------------------------
    public double pay()
    {
-      return payRate;
+      double payment = super.pay() + bonus;
+
+      bonus = 0;
+
+      return payment;
    }
    
 }
